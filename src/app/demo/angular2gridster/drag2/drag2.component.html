@@ -1,0 +1,41 @@
+<ngx-gridster #gridster1 [options]="gridsterOptions" [draggableOptions]="gridsterDraggableOptions">
+  <ngx-gridster-item
+    #itemComp
+    *ngFor="let widget of widgets;let indx = index"
+    [(x)]="widget.x"
+    [(y)]="widget.y"
+    [(w)]="widget.w"
+    [(h)]="widget.h"
+  >
+    <div class="panel-heading">
+      <h5 class="panel-title">{{ widget.title }}</h5>
+    </div>
+
+    <div class="panel-body">
+      <p>
+        Position: {{itemComp?.item?.x}} x {{itemComp?.item?.y}}<br>
+        Size: {{itemComp?.item?.w}} x {{itemComp?.item?.h}}<br>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" [(ngModel)]="widget.dragAndDrop" value="true"> Draggable
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="widget.resizable" value="true"> Resizable
+        </label>
+        <!--        <button (click)="setWidth(widget, 1, $event, gridster1)">width +</button>-->
+        <!--        <button (click)="setWidth(widget, -1, $event, gridster1)">width -</button>-->
+        <!--        <button (click)="setHeight(widget, 1, $event, gridster1)">height +</button>-->
+        <!--        <button (click)="setHeight(widget, -1, $event, gridster1)">height -</button>-->
+      </p>
+      <p>
+        <button (click)="remove($event, indx,gridster1)">remove</button>
+      </p>
+
+      <pre>{{ widget | json }}</pre>
+
+    </div>
+    <!--    {{widget.title}}-->
+    <!-- some content -->
+  </ngx-gridster-item>
+</ngx-gridster>
